@@ -29,7 +29,8 @@ $solr_bin/bin/solr zk upconfig -n "$collection" -d "$solr_bin/server/solr/config
 # Create collection for our data
 curl "http://$host:$port/solr/admin/collections?action=CREATE&name=$collection&numShards=4&replicationFactor=1&collection.configName=$collection"
 
-read -p "auto-generate fields based on keys in your data? (yes/no) » " schemaless
+read -p "auto-generate fields based on keys in your data? (yes/[NO]) » " schemaless
+schemaless=${name:="no"}
 
 # Disable schema-less mode
 if [ "$schemaless" == "yes" ]; then
